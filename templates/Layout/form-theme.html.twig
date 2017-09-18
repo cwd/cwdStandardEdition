@@ -1,0 +1,14 @@
+{% extends 'AvanzuAdminThemeBundle:layout:form-theme.html.twig' %}
+
+{% block _user_permissions_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                <div class="col-md-4 col-sm-6">
+                    {{ form_widget(child) }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}

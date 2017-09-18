@@ -1,0 +1,13 @@
+twig:
+    paths: ['%kernel.project_dir%/templates']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+#    globals:
+#        version: 0.1.0
+#        admin_skin: skin-green
+#        avanzu_adminlte_close_alert: true
+#        theme:
+#          primaryColor: "%theme_primary_color%"
+#          logo: "%theme_logo%"
+#    form_themes:
+#        - 'TimeTrackingAdminBundle:Layout:form-theme.html.twig'

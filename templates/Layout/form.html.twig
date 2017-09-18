@@ -1,0 +1,30 @@
+{% extends "TimeTrackingAdminBundle:Layout:main.html.twig" %}
+
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header bg-green-gradient">
+                    <i class="{{ icon|default('ion ion-clipboard') }}"></i>
+
+                    <h3 class="box-title">{{ title|default('')|trans }}</h3>
+
+                    <div class="box-tools pull-right">
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div class="box-body">
+                    {{ form_widget(form) }}
+                </div>
+
+                <div class="box-footer bg-gray-light">
+                    <a href="{{ path(redirectRoute, redirectParameter|default({})) }}" class="btn btn-default">{{ "generic.cancel"|trans }}</a>
+                    <button type="submit" class="btn btn-primary pull-right">{{ "generic.save"|trans }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
