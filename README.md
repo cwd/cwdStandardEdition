@@ -1,11 +1,48 @@
 Symfony Standard Edition
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
+Welcome to the cwd.at GmbH fork of the Symfony Standard Edition - a fully-functional Symfony
 application that you can use as the skeleton for your new applications.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+This edition uses the new Symfony 4.0 directory structure.
+
+How to use it:
+```
+composer create-project cwd/framework-standard-edition
+```
+
+
+
+What then?
+```
+// Copy the .env.dist to .env and adept
+cp .env.dist .env
+
+
+// Call composer install again (create-projets fails because of mising .env file
+composer install --no-suggest
+
+
+// Create the Database Schema
+bin/console doctrine:schema:create
+
+
+// Create your first user
+bin/console fos:user:create myusername myemail@host.com mypassword --super-admin
+
+```
+
+Docker
+------
+
+For your convenience there is even a docker-compose.yml just fire it up with:
+```
+USERID=$UID docker-compose up -d 
+```
+Open your browser at [http://localhost:8400][15]
+
+Or use the phpmyadmin under [http://localhost:8401][16]
+
 
 What's inside?
 --------------
@@ -55,7 +92,15 @@ It comes pre-configured with the following bundles:
 
   * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
     integration
-
+  
+  * **StofDoctrineExtensionsBundle** - Doctrine Extensions Bundle
+    
+  * **FosUserBundle** - Security and User Handling
+  
+  * **CwdBootgridBundle** - for easy Datatables
+    
+  * **AvanzuAdminThemeBundle** - AdminLTE Symfony Integration
+  
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
 
@@ -70,3 +115,5 @@ Enjoy!
 [11]: https://symfony.com/doc/3.3/logging.html
 [13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
 [14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+[15]: http://localhost:8400
+[16]: http://localhost:8401

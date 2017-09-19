@@ -36,10 +36,11 @@
     "require-dev": {
         "behat/gherkin": "~4.5",
         "behat/symfony2-extension": "~2.1",
-        "phpunit/phpunit": "^6.3",
+        "phpunit/phpunit": "~5.7",
         "sensio/generator-bundle": "^3.0",
         "symfony/dotenv": "^3.3",
-        "symfony/phpunit-bridge": "^3.3"
+        "symfony/phpunit-bridge": "^3.3",
+        "cwd/phpcs": "dev-master"
     },
     "scripts": {
         "symfony-scripts": [

@@ -1,0 +1,17 @@
+exclude_paths:
+  - "**/tests/"
+  - "config"
+  - "bin"
+  - "var"
+  - "vendor"   
+
+engines:
+  phpmd:
+    enabled: true
+    config:
+      file_extensions:
+        - php
+      rulesets: "unusedcode,codesize,naming"
+ratings:
+  paths:
+  - "**.php"

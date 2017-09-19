@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Application.
+ * (c) 2016 cwd.at GmbH <office@cwd.at>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -27,6 +36,7 @@ class Kernel extends BaseKernel
     public function registerBundles(): iterable
     {
         $contents = require dirname(__DIR__).'/config/bundles.php';
+
         foreach ($contents as $class => $envs) {
             if (isset($envs['all']) || isset($envs[$this->environment])) {
                 yield new $class();
@@ -38,9 +48,11 @@ class Kernel extends BaseKernel
     {
         $confDir = dirname(__DIR__).'/config';
         $loader->load($confDir.'/packages/*'.self::CONFIG_EXTS, 'glob');
+
         if (is_dir($confDir.'/packages/'.$this->environment)) {
             $loader->load($confDir.'/packages/'.$this->environment.'/**/*'.self::CONFIG_EXTS, 'glob');
         }
+
         $loader->load($confDir.'/services'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/services_'.$this->environment.self::CONFIG_EXTS, 'glob');
     }
@@ -48,12 +60,15 @@ class Kernel extends BaseKernel
     protected function configureRoutes(RouteCollectionBuilder $routes): void
     {
         $confDir = dirname(__DIR__).'/config';
+
         if (is_dir($confDir.'/routes/')) {
             $routes->import($confDir.'/routes/*'.self::CONFIG_EXTS, '/', 'glob');
         }
+
         if (is_dir($confDir.'/routes/'.$this->environment)) {
             $routes->import($confDir.'/routes/'.$this->environment.'/**/*'.self::CONFIG_EXTS, '/', 'glob');
         }
+
         $routes->import($confDir.'/routes'.self::CONFIG_EXTS, '/', 'glob');
     }
 }

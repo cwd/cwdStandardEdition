@@ -1,0 +1,161 @@
+stages:
+  - test
+  - build
+  - deploy
+
+cache:
+  key: 'mailingowl-composer-cache'
+  paths:
+    - .composer-cache
+
+variables:
+    COMPOSER_ALLOW_SUPERUSER: "1"
+    COMPOSER_DISABLE_XDEBUG_WARN: "1"
+
+
+.php_template: &php_definition
+  services:
+    - redis
+  before_script:
+    - export COMPOSER_CACHE_DIR="$(pwd -P)/.composer-cache"
+    - export SYMFONY_ENV=test
+    - mkdir build/api build/coverage build/logs
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=bin --filename=composer.phar && chmod 755 bin/composer.phar
+    - curl -sSL http://static.phpmd.org/php/latest/phpmd.phar > bin/phpmd && chmod 755 bin/phpmd
+    - bin/composer.phar install --prefer-dist --ansi --no-progress --no-suggest
+    - bin/console doctrine:schema:update --force
+  script:
+    - bin/php-cs-fixer fix --dry-run --config-file=.php_cs
+#    - bin/phpmetrics src -q --report-csv=build/phpmetrics.csv #--report-cli
+    - bin/phpcpd -n --ansi --exclude Model src
+    - bin/phpmd src text phpmd.xml --exclude Entity,Tests
+    - php -d zend.enable_gc=0 bin/phpunit -c ./phpunit.xml.dist --coverage-html=build/coverage --coverage-xml=build/logs/coverage --log-junit=build/logs/phpunit.xml --coverage-text --colors=never
+    - bin/behat --format=progress --verbose --stop-on-failure
+  stage: test
+
+test:php7.1:
+  <<: *php_definition
+  image: dockerhub.cwd.at/docker/php/cli-xdebug:7.1
+  artifacts:
+    name: coverage
+    paths:
+      - build/coverage
+      - build/logs
+    when: on_success
+    expire_in: 2 days
+  tags:
+    - autoscale
+
+codeclimate:
+  image: docker:latest
+#  variables:
+#    DOCKER_DRIVER: overlay
+#    DOCKER_HOST: tcp://docker:2376
+  services:
+    - docker:dind
+  script:
+    - docker pull codeclimate/codeclimate
+    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate init
+    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate engines:install
+    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze -f json > codeclimate.json
+  artifacts:
+    paths: [codeclimate.json]
+  stage: test
+  tags:
+    - autoscale
+
+#build:app:
+#  image: docker:latest
+#  services:
+#    - docker:dind
+#  stage: build
+#  variables:
+#    SYMFONY_ENV: "prod"
+#  before_script:
+#    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+#    - export IMAGE_TAG=$(echo -en $CI_COMMIT_REF_NAME | tr -c '[:alnum:]_.-' '-')
+#  script:
+#    - docker run --rm --name composerinstall -v "$PWD":/var/www/app -w /var/www/app composer:1.4 install --no-dev --ignore-platform-reqs --no-suggest --no-progress --no-scripts --prefer-dist
+#    - cp app/config/parameters.yml.dist app/config/parameters.yml
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE:$IMAGE_TAG" .
+#    - docker push "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
+#  only: [develop]
+#  dependencies:
+#    - test:php7.0
+#    - test:php7.1
+#  tags:
+#    - autoscale
+
+#build:apache:
+#  image: docker:latest
+#  services:
+#    - docker:dind
+#  stage: build
+#  script:
+#    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+#    - export IMAGE_TAG=apache
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE:$IMAGE_TAG" .docker/apache/
+#    - docker push "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
+#  when: manual
+#  tags:
+#    - autoscale
+
+#deploy:staging:
+#  vari#ables:
+#    DOCKER_TLS_VERIFY: "1"
+#    DOCKER_HOST: "tcp://212.186.71.82:2376"
+#    DOCKER_CERT_PATH: "/home/gitlab-runner/.docker/machine/machines/dockerhost1"
+#    DOCKER_MACHINE_NAME: "dockerhost1"
+#    SYMFONY_ENV: prod
+#    MYSQL_PROD_PASSWORD: "$MYSQL_PROD_PASSWORD"
+#    SECRET_TOKEN: "$SECRET_TOKEN"
+#    COMPOSE_PROJECT_NAME: "mailingowl_staging"
+#    COMPOSER_CACHE_DIR: "$(pwd -P)/.composer-cache"
+#    ASSET_VERSION: ${CI_COMMIT_SHA:0:8}
+#  before_script:
+#    - export BRANCH=$(echo -en $CI_COMMIT_REF_NAME | tr -c '[:alnum:]_.-' '-')
+#    - docker-compose -f docker-compose.prod.yml pull --parallel
+#  script:
+#    - docker-compose -f docker-compose.prod.yml up -d --force-recreate app
+#    - docker-compose -f docker-compose.prod.yml exec app sh -c 'cp -a /app/* /var/www/app'
+#    - docker-compose -f docker-compose.prod.yml restart php
+#    - docker-compose -f docker-compose.prod.yml exec -T --user www-data php composer install --no-dev --no-suggest --no-progress --prefer-dist --optimize-autoloader
+#    - docker-compose -f docker-compose.prod.yml exec -T --user www-data php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+#  stage: deploy
+#  environment:
+#    name: staging
+#    url: http://staging.mailingowl.com
+#  only: [develop]
+#  dependencies:
+#    - build:app
+#  tags:
+#    - deploy
+
+pages:
+  before_script:
+    - mkdir -p public
+    - mkdir -p build/logs
+    - curl -sSL http://phpdox.de/releases/phpdox.phar > bin/phpdox && chmod 755 bin/phpdox
+    - curl -sSL https://phar.phpunit.de/phploc.phar > bin/phploc && chmod 755 bin/phploc
+    - curl -sSL https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar > bin/phpmetrics && chmod 755 bin/phpmetrics
+    - curl -sSL http://static.phpmd.org/php/latest/phpmd.phar > bin/phpmd && chmod 755 bin/phpmd
+    - curl -sSL https://raw.githubusercontent.com/phpmetrics/SymfonyExtension/master/symfony-extension.phar > bin/symfony-extension.phar && chmod 755 bin/symfony-extension.phar
+    - curl -sSL https://raw.githubusercontent.com/phpmetrics/ComposerExtension/master/composer-extension.phar > bin/composer-extension.phar && chmod 755 bin/composer-extension.phar
+  stage: deploy
+  tags:
+    - php7.1
+  script:
+    - bin/phploc src tests --count-tests --log-xml=build/logs/phploc.xml -q
+    - bin/phpmetrics -q --plugins=bin/composer-extension.phar,bin/symfony-extension.phar --junit=build/logs/phpunit.xml --report-html=build/phpmetrics src
+    - bin/phpmd src xml --reportfile build/logs/pmd.xml phpmd.xml --exclude Entity,Tests
+    - bin/phpdox
+    - mv build/coverage public/coverage
+    - mv build/phpmetrics public/
+    - echo '<html><body><h1>Mailingowl</h1><a href="docs/html/index.xhtml">phpDox</a><br><a href="coverage/">Coverage</a><br><a href="phpmetrics/">phpMetrics</a></body></html>' > public/index.html
+  artifacts:
+    paths:
+      - public
+  dependencies:
+    - test:php7.1
+  only:
+    - develop
