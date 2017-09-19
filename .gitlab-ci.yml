@@ -33,6 +33,7 @@ variables:
 #    - bin/phpcpd -n --ansi --exclude Model src
 #    - bin/phpmd src text phpmd.xml --exclude Entity,Tests
     - php -d zend.enable_gc=0 bin/phpunit -c ./phpunit.xml.dist --coverage-html=build/coverage --coverage-xml=build/logs/coverage --log-junit=build/logs/phpunit.xml --coverage-text --colors=never
+    - bin/console --env=test doctrine:schema:update --force --no-interaction --no-debug
     - bin/behat --format=progress --verbose --stop-on-failure
   stage: test
 
