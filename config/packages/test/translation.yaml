@@ -1,5 +1,5 @@
 framework:
-    default_locale: en_EN
+    default_locale: xx
     translator:
         fallbacks:
-            - en_EN
+            - xx

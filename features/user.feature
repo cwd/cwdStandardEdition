@@ -41,7 +41,7 @@ Feature: User CRUD
     When I fill in "user_firstname" with ""
     And I press "generic.save"
     Then the response status code should be 200
-    And I should see "Dieser Wert sollte nicht leer sein."
+    And I should see "This value should not be blank."
 
   Scenario: See grid list
     Given I am authenticated as User "max.muster"
