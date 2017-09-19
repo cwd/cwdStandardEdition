@@ -136,6 +136,7 @@ codeclimate:
 
 pages:
   before_script:
+    - apk --upgrade add curl      
     - mkdir -p public
     - mkdir -p build/logs
     - curl -sSL http://phpdox.de/releases/phpdox.phar > bin/phpdox && chmod 755 bin/phpdox
