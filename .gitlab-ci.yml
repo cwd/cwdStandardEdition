@@ -4,7 +4,7 @@ stages:
   - deploy
 
 cache:
-  key: 'mailingowl-composer-cache'
+  key: "${CI_PROJECT_PATH_SLUG}-cache"
   paths:
     - .composer-cache
 
@@ -14,21 +14,19 @@ variables:
 
 
 .php_template: &php_definition
-  services:
-    - redis
+#  services:
+#    - redis
   before_script:
     - export COMPOSER_CACHE_DIR="$(pwd -P)/.composer-cache"
     - export SYMFONY_ENV=test
-    - mkdir build/api build/coverage build/logs
-    - curl -sS https://getcomposer.org/installer | php -- --install-dir=bin --filename=composer.phar && chmod 755 bin/composer.phar
-    - curl -sSL http://static.phpmd.org/php/latest/phpmd.phar > bin/phpmd && chmod 755 bin/phpmd
-    - bin/composer.phar install --prefer-dist --ansi --no-progress --no-suggest
+    - mkdir -p build/api build/coverage build/logs
+    - composer install --prefer-dist --ansi --no-progress --no-suggest
     - bin/console doctrine:schema:update --force
   script:
     - bin/php-cs-fixer fix --dry-run --config-file=.php_cs
 #    - bin/phpmetrics src -q --report-csv=build/phpmetrics.csv #--report-cli
-    - bin/phpcpd -n --ansi --exclude Model src
-    - bin/phpmd src text phpmd.xml --exclude Entity,Tests
+#    - bin/phpcpd -n --ansi --exclude Model src
+#    - bin/phpmd src text phpmd.xml --exclude Entity,Tests
     - php -d zend.enable_gc=0 bin/phpunit -c ./phpunit.xml.dist --coverage-html=build/coverage --coverage-xml=build/logs/coverage --log-junit=build/logs/phpunit.xml --coverage-text --colors=never
     - bin/behat --format=progress --verbose --stop-on-failure
   stage: test
