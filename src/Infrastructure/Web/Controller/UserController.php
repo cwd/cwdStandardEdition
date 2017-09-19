@@ -1,18 +1,20 @@
 <?php
 
 /*
- * This file is part of MailingOwl.
+ * This file is part of Application.
  * (c) 2016 cwd.at GmbH <office@cwd.at>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Web\Controller;
 
 use App\Infrastructure\Manager\UserManager;
+use App\Infrastructure\Model\Entity\User;
 use App\Infrastructure\Web\Form\UserType;
 use App\Infrastructure\Web\Grid\UserGrid;
-use App\Infrastructure\Model\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

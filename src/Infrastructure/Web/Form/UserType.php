@@ -1,16 +1,17 @@
 <?php
 
 /*
- * This file is part of MailingOwl.
+ * This file is part of Application.
  * (c) 2016 cwd.at GmbH <office@cwd.at>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Web\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -29,7 +30,7 @@ class UserType extends AbstractType
      *
      * @return FormBuilderInterface
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) : FormBuilderInterface
+    public function buildForm(FormBuilderInterface $builder, array $options): FormBuilderInterface
     {
         $builder
             ->add('firstname', TextType::class, ['label' => 'user.firstname'])

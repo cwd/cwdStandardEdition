@@ -2,11 +2,25 @@ default:
     suites:
         default:
             contexts:
-                - FeatureContext:
+                - App\Context\FeatureContext:
+                    container: '@service_container'
                     kernel: '@kernel'
+                - App\Context\UserContext:
+                    userManager: '@App\Infrastructure\Manager\UserManager'
+                    fosUserManager: '@fos_user.user_manager'
+                    encoderFactory: '@security.encoder_factory'
+                - App\Context\AuthContext:
+                    tokenStorage: '@security.token_storage'
+                    userService: '@App\Infrastructure\Manager\UserManager'
 
     extensions:
         Behat\Symfony2Extension:
             kernel:
                 bootstrap: features/bootstrap/bootstrap.php
                 class: App\Kernel
+        Behat\MinkExtension:
+            sessions:
+              default:
+                symfony2: ~
+            show_auto: true
+            show_cmd: cat %s

@@ -1,0 +1,5 @@
+framework:
+    default_locale: xx
+    translator:
+        fallbacks:
+            - xx
