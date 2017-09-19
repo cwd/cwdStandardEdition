@@ -3,11 +3,6 @@ stages:
   - build
   - deploy
 
-cache:
-  key: "${CI_PROJECT_PATH_SLUG}-cache"
-  paths:
-    - .composer-cache
-
 variables:
     COMPOSER_ALLOW_SUPERUSER: "1"
     COMPOSER_DISABLE_XDEBUG_WARN: "1"
@@ -36,6 +31,11 @@ variables:
     - bin/console --env=test doctrine:schema:update --force --no-interaction --no-debug
     - bin/behat --format=progress --verbose --stop-on-failure
   stage: test
+  cache:
+    key: "${CI_PROJECT_PATH_SLUG}-cache"
+    paths:
+      - .composer-cache
+    policy: pull-push
 
 test:php7.1:
   <<: *php_definition

@@ -6,3 +6,5 @@ use Symfony\Component\Dotenv\Dotenv;
 if (!isset($_SERVER['APP_ENV'])) {
     (new Dotenv())->load(__DIR__.'/../../.env');
 }
+
+print_r($_SERVER['APP_ENV']);
