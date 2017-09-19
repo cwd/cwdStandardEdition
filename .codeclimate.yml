@@ -3,7 +3,8 @@ exclude_paths:
   - "config"
   - "bin"
   - "var"
-  - "vendor"   
+  - "vendor"
+  - "public"
 
 engines:
   phpmd:
