@@ -6,6 +6,9 @@ application that you can use as the skeleton for your new applications.
 
 This edition uses the new Symfony 4.0 directory structure.
 
+[![pipeline status](https://gitlab.cwd.at/symfony/cwd-standard-edition/badges/develop/pipeline.svg)](https://gitlab.cwd.at/symfony/cwd-standard-edition/commits/develop)
+[![Dependency Status](https://gemnasium.com/badges/2e40c03315e7e729443d44813dcf3adf.svg)](https://gemnasium.com/d1c9f9e46c297989259d4665c20ac7a2)
+
 How to use it:
 ```
 composer create-project cwd/framework-standard-edition
