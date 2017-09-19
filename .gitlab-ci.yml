@@ -16,6 +16,11 @@ variables:
 .php_template: &php_definition
 #  services:
 #    - redis
+  variables:
+    APP_ENV: test
+    APP_DEBUG: false
+    APP_SECRET: "367dasdfasdf234234234e0ab961e4ab94"
+    DATABASE_URL: "sqlite:///:memory:"
   before_script:
     - export COMPOSER_CACHE_DIR="$(pwd -P)/.composer-cache"
     - export SYMFONY_ENV=test
