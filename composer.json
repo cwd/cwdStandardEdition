@@ -29,15 +29,17 @@
         "twig/twig": "^1.0||^2.0",
         "cwd/common-bundle": "@stable",
         "cwd/bootgrid-bundle": "@stable",
-        "avanzu/admin-theme-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "~2.0"
+        "avanzu/admin-theme-bundle": "dev-master#c0ff9dd38626778e3a7ac757a837677cb21e0e0c",
+        "friendsofsymfony/user-bundle": "~2.0",
+        "stof/doctrine-extensions-bundle": "^1.2"
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0",
-        "symfony/dotenv": "^3.3",
+        "behat/gherkin": "~4.5",
         "behat/symfony2-extension": "~2.1",
-        "behat/gherkin": "~4.5"
+        "phpunit/phpunit": "^6.3",
+        "sensio/generator-bundle": "^3.0",
+        "symfony/dotenv": "^3.3",
+        "symfony/phpunit-bridge": "^3.3"
     },
     "scripts": {
         "symfony-scripts": [

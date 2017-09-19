@@ -3,12 +3,36 @@ doctrine:
         url: '%env(DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        #naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         mappings:
+            FOSUserBundle:    ~
             App:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/Model/Entity'
-                prefix: 'App\Model\Entity\'
-                alias: App
+                dir: '%kernel.project_dir%/src/Infrastructure/Model/Entity'
+                prefix: 'App\Infrastructure\Model\Entity\'
+                alias: Model
+            #Doctrine Extensions Mappings
+            #gedmo_translatable:
+            #    type: annotation
+            #    prefix: Gedmo\Translatable\Entity
+            #    dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+            #    alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+            #    is_bundle: false
+            #gedmo_translator:
+            #    type: annotation
+            #    prefix: Gedmo\Translator\Entity
+            #    dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+            #    alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+            #    is_bundle: false
+            #gedmo_loggable:
+            #    type: annotation
+            #    prefix: Gedmo\Loggable\Entity
+            #    dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+            #    alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+            #    is_bundle: false
+        #filters:
+        #    softdeleteable:
+        #        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+        #        enabled: true

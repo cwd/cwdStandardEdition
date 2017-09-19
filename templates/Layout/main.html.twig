@@ -2,9 +2,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/avanzuadmintheme/static/'~ app.environment ~'/styles/admin-lte-all.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/timetrackingadmin/plugins/bootstrap-switch/bootstrap-switch.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/timetrackingadmin/plugins/jquery-multiselect/css/multi-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/timetrackingadmin/css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 {% endblock %}
 
 {% block title %}{{ "site.title"|trans }}{% endblock %}
@@ -13,8 +11,7 @@
 
 {% block avanzu_logo %}
     <a href="#" class="logo">
-        <!-- Add the class icon to your logo image or logo icon to add the margining -->
-        <img src="{{ asset("bundles/timetrackingadmin/img/logo.png") }}" class="icon" width="50" alt="TimeTracking">
+        <img src="{{ asset("logo.png") }}" class="icon" width="50" alt="">
     </a>
 {% endblock %}
 
@@ -37,12 +34,12 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/timetrackingadmin/plugins/bootstrap-switch/bootstrap-switch.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/timetrackingadmin/scripts/main.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/timetrackingadmin/plugins/jquery-multiselect/js/jquery.multi-select.js') }}"></script>
     <script>
         var translations = {
             confirm_delete: '{{ 'generic.confirm_delete'|trans|raw }}'
         };
     </script>
+    <script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/custom.js') }}"></script>
+
 {% endblock %}

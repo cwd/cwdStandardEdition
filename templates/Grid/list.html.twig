@@ -1,0 +1,56 @@
+{% extends 'Layout/main.html.twig' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header bg-green-gradient">
+                    <i class="{{ icon|default('ion ion-clipboard') }}"></i>
+
+                    <h3 class="box-title">{{ title|default('')|trans }}</h3>
+
+                    <div class="box-tools pull-right" id="gridtools">
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="pull-left">
+                        <a class="btn btn-primary btn-solid" href="{{ path(createRoute) }}">{{ createLabel|trans }}</a>
+                    </div>
+
+                    {{ bootgrid(grid) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("bundles/cwdbootgrid/js/jquery.bootgrid.min.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/cwdbootgrid/css/jquery.bootgrid.min.css") }}" />
+    <style>
+        .bootgrid-header .row {
+            /*margin-top: -63px;*/
+            float:right;
+            margin-top: -15px;
+        }
+
+        .bootgrid-header {
+            /*margin-bottom: 0px;*/
+        }
+
+        .actionBar {
+            padding-right:0px;
+        }
+    </style>
+{% endblock %}

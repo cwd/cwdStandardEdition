@@ -6,7 +6,7 @@
  * Time: 17:00
  */
 
-namespace App\Controller;
+namespace App\Infrastructure\Web\Controller;
 
 use Cwd\CommonBundle\Controller\AbstractBaseController;
 use Symfony\Component\Routing\Annotation\Route;

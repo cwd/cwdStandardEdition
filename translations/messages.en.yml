@@ -1,0 +1,25 @@
+site.title: Application
+site.subtitle: by CWD.at
+
+generic.edit: Edit
+generic.delete: Delete
+generic.id: ID
+generic.created: Created
+generic.updated: Updated
+generic.cancel: Cancel
+generic.save: Save
+generic.confirm_delete: "Are you sure to delete this entry?"
+
+member.profile: Profile
+member.signout: Signup
+member.since: Member since
+
+user.title: User
+user.menu_title: User
+user.firstname: Firstname
+user.lastname: Lastname
+user.email: Email
+user.password: Password
+user.password_repeat: Password verify
+user.create: Create user
+user.username: Username

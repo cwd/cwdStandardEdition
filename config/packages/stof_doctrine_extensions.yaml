@@ -1,0 +1,14 @@
+stof_doctrine_extensions:
+    default_locale: de
+#    class:
+#        sluggable: Cwd\GenericBundle\Doctrine\SluggableListener
+    orm:
+        default:
+            tree: false
+            sortable: false
+            softdeleteable: false
+            timestampable: true
+            blameable: true
+            loggable: false
+            sluggable: false
+            translatable: false

@@ -4,26 +4,41 @@ parameters:
     locale: 'de'
 
 services:
-    # default configuration for services in *this* file
     _defaults:
-        # automatically injects dependencies in your services
         autowire: true
-        # automatically registers your services as commands, event subscribers, etc.
         autoconfigure: true
-        # this means you cannot fetch services directly from the container via $container->get()
-        # if you need to do this, you can override this setting on individual services
         public: false
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        # you can exclude directories or files
-        # but if a service is unused, it's removed anyway
         exclude: '../src/{Entity,Migrations,Repository,Tests}'
 
-    # controllers are imported separately to make sure they
-    # have the tag that allows actions to type-hint services
-    App\Controller\:
-        resource: '../src/Controller'
+
+    App\Infrastructure\Web\Controller\:
+        resource: '../src/Infrastructure/Web/Controller'
         tags: ['controller.service_arguments']
+
+    # Manager Classes should be always public
+    App\Infrastructure\Manager\:
+        resource: '../src/Infrastructure/Manager'
+        public: true
+
+    App\Infrastructure\Web\EventListener\Menu\MainMenuListener:
+        arguments:
+            - "@security.authorization_checker"
+            - "@translator.default"
+        tags:
+            - { name: kernel.event_listener, event: theme.sidebar_setup_menu, method: onSetupMenu, priority: 0 }
+            - { name: kernel.event_listener, event: theme.breadcrumb, method: onSetupMenu, priority: 0 }
+
+    App\Infrastructure\Web\EventListener\User\ShowUserListener:
+        arguments:
+            - "@security.token_storage"
+        tags:
+            - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
+
+    App\Infrastructure\Web\EventListener\User\ShowUserListener:
+        arguments:
+            - "@security.token_storage"
+        tags:
+            - { name: kernel.event_listener, event: theme.sidebar_user, method: onShowuser }

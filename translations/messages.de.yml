@@ -1,0 +1,25 @@
+site.title: Application
+site.subtitle: by CWD.at
+
+generic.edit: Ändern
+generic.delete: Löschen
+generic.id: ID
+generic.created: Angelegt
+generic.updated: Geändert
+generic.cancel: Abbrechen
+generic.save: Speichern
+generic.confirm_delete: "Diesen Eintrag wirklich löschen?"
+
+member.profile: Profil
+member.signout: Abmelden
+member.since: Mitglied seit
+
+user.title: Benutzer
+user.menu_title: Benutzer
+user.firstname: Vorname
+user.lastname: Nachname
+user.email: Email
+user.password: Passwort
+user.password_repeat: Passwort wiederholen
+user.create: Benutzer anlegen
+user.username: Benutzername

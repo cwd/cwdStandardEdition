@@ -16,7 +16,9 @@ return [
     'Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle' => ['all' => true],
     'FOS\UserBundle\FOSUserBundle' => ['all' => true],
     'WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle' => ['all' => true],
+    'Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle' => ['all' => true],
     'Cwd\CommonBundle\CwdCommonBundle' => ['all' => true],
     'Cwd\BootgridBundle\CwdBootgridBundle' => ['all' => true],
-//    'Cwd\FosUserExtensionBundle\CwdFosUserExtensionBundle' => ['all' => true],
+    'Cwd\FosUserExtensionBundle\CwdFosUserExtensionBundle' => ['all' => true],
+    'Cwd\ThemeBundle\CwdThemeBundle' => ['all' => true],
 ];

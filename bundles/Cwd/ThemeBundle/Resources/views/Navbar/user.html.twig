@@ -1,0 +1,46 @@
+<!-- User Account: style can be found in dropdown.less -->
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
+{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+    <li class="">
+        <a href="{{ path('dashboard', {'_switch_user': '_exit'}) }}">{{ "generic.exit_impersonation"|trans }}</a>
+    </li>
+{% endif %}
+
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        {{ macro.avatar(user.avatar, user.username, 'user-image') }}
+        <span class="hidden-xs">{{ user.name }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            {{ macro.avatar(user.avatar, user.username) }}
+            <p>
+                {{user.name}} - {{user.title}}
+                <small>{{ 'member.since'|trans({'%date%': user.memberSince|date('m.Y') }, 'messages') }}</small>
+            </p>
+        </li>
+        {#
+        <li class="user-body">
+            <div class="col-xs-4 text-center">
+                <a href="#">Followers</a>
+            </div>
+            <div class="col-xs-4 text-center">
+                <a href="#">Sales</a>
+            </div>
+            <div class="col-xs-4 text-center">
+                <a href="#">Friends</a>
+            </div>
+        </li>
+        #}
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default btn-flat">{{'member.profile'|trans({}, 'messages')}}</a>
+            </div>
+            <div class="pull-right">
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">{{ 'member.signout'|trans({}, 'messages') }}</a>
+            </div>
+        </li>
+    </ul>
+</li>
