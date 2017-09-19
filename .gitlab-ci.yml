@@ -49,23 +49,20 @@ test:php7.1:
   tags:
     - autoscale
 
-codeclimate:
-  image: docker:latest
-#  variables:
-#    DOCKER_DRIVER: overlay
-#    DOCKER_HOST: tcp://docker:2376
-  services:
-    - docker:dind
-  script:
-    - docker pull codeclimate/codeclimate
-    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate init
-    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate engines:install
-    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze -f json > codeclimate.json
-  artifacts:
-    paths: [codeclimate.json]
-  stage: test
-  tags:
-    - autoscale
+#codeclimate:
+#  image: docker:latest
+#  services:
+#    - docker:dind
+#  script:
+#    - docker pull codeclimate/codeclimate
+#    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate init
+#    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate engines:install
+#    - docker run --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate analyze -f json > codeclimate.json
+#  artifacts:
+#    paths: [codeclimate.json]
+#  stage: test
+#  tags:
+#    - autoscale
 
 #build:app:
 #  image: docker:latest
@@ -134,32 +131,32 @@ codeclimate:
 #  tags:
 #    - deploy
 
-pages:
-  before_script:
-    - apk --upgrade add curl      
-    - mkdir -p public
-    - mkdir -p build/logs
-    - curl -sSL http://phpdox.de/releases/phpdox.phar > bin/phpdox && chmod 755 bin/phpdox
-    - curl -sSL https://phar.phpunit.de/phploc.phar > bin/phploc && chmod 755 bin/phploc
-    - curl -sSL https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar > bin/phpmetrics && chmod 755 bin/phpmetrics
-    - curl -sSL http://static.phpmd.org/php/latest/phpmd.phar > bin/phpmd && chmod 755 bin/phpmd
-    - curl -sSL https://raw.githubusercontent.com/phpmetrics/SymfonyExtension/master/symfony-extension.phar > bin/symfony-extension.phar && chmod 755 bin/symfony-extension.phar
-    - curl -sSL https://raw.githubusercontent.com/phpmetrics/ComposerExtension/master/composer-extension.phar > bin/composer-extension.phar && chmod 755 bin/composer-extension.phar
-  stage: deploy
-  tags:
-    - php7.1
-  script:
-    - bin/phploc src tests --count-tests --log-xml=build/logs/phploc.xml -q
-    - bin/phpmetrics -q --plugins=bin/composer-extension.phar,bin/symfony-extension.phar --junit=build/logs/phpunit.xml --report-html=build/phpmetrics src
-    - bin/phpmd src xml --reportfile build/logs/pmd.xml phpmd.xml --exclude Entity,Tests
-    - bin/phpdox
-    - mv build/coverage public/coverage
-    - mv build/phpmetrics public/
-    - echo '<html><body><h1>Mailingowl</h1><a href="docs/html/index.xhtml">phpDox</a><br><a href="coverage/">Coverage</a><br><a href="phpmetrics/">phpMetrics</a></body></html>' > public/index.html
-  artifacts:
-    paths:
-      - public
-  dependencies:
-    - test:php7.1
-  only:
-    - develop
+#pages:
+#  before_script:
+#    - apk --upgrade add curl      
+#    - mkdir -p public
+#    - mkdir -p build/logs
+#    - curl -sSL http://phpdox.de/releases/phpdox.phar > bin/phpdox && chmod 755 bin/phpdox
+#    - curl -sSL https://phar.phpunit.de/phploc.phar > bin/phploc && chmod 755 bin/phploc
+#    - curl -sSL https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar > bin/phpmetrics && chmod 755 bin/phpmetrics
+#    - curl -sSL http://static.phpmd.org/php/latest/phpmd.phar > bin/phpmd && chmod 755 bin/phpmd
+#    - curl -sSL https://raw.githubusercontent.com/phpmetrics/SymfonyExtension/master/symfony-extension.phar > bin/symfony-extension.phar && chmod 755 bin/symfony-extension.phar
+#    - curl -sSL https://raw.githubusercontent.com/phpmetrics/ComposerExtension/master/composer-extension.phar > bin/composer-extension.phar && chmod 755 bin/composer-extension.phar
+#  stage: deploy
+#  tags:
+#    - php7.1
+#  script:
+#    - bin/phploc src tests --count-tests --log-xml=build/logs/phploc.xml -q
+#    - bin/phpmetrics -q --plugins=bin/composer-extension.phar,bin/symfony-extension.phar --junit=build/logs/phpunit.xml --report-html=build/phpmetrics src
+#    - bin/phpmd src xml --reportfile build/logs/pmd.xml phpmd.xml --exclude Entity,Tests
+#    - bin/phpdox
+#    - mv build/coverage public/coverage
+#    - mv build/phpmetrics public/
+#    - echo '<html><body><h1>Mailingowl</h1><a href="docs/html/index.xhtml">phpDox</a><br><a href="coverage/">Coverage</a><br><a href="phpmetrics/">phpMetrics</a></body></html>' > public/index.html
+#  artifacts:
+#    paths:
+#      - public
+#  dependencies:
+#    - test:php7.1
+#  only:
+#    - develop
