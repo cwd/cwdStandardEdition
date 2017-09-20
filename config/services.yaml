@@ -11,16 +11,16 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Repository,Tests}'
+        exclude: '../src/{Domain/Model,Migrations,Repository,Tests}'
 
 
     App\Infrastructure\Web\Controller\:
         resource: '../src/Infrastructure/Web/Controller'
         tags: ['controller.service_arguments']
 
-    # Manager Classes should be always public
-    App\Infrastructure\Manager\:
-        resource: '../src/Infrastructure/Manager'
+    # Manager Classes should always be public
+    App\Domain\:
+        resource: '../src/Domain/*/*Manager*'
         public: true
 
     App\Infrastructure\Web\EventListener\Menu\MainMenuListener:

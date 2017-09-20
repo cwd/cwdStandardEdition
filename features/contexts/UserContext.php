@@ -8,12 +8,12 @@
  */
 namespace App\Context;
 
-use App\Infrastructure\Manager\UserManager;
+use App\Domain\User\UserManager;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use FOS\UserBundle\Model\UserManager as FosUserManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use App\Infrastructure\Model\Entity\User;
+use App\Domain\Model\User;
 
 class UserContext implements Context
 {

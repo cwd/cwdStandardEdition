@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Model\Entity;
+namespace App\Domain\Model;
 
 use Cwd\CommonBundle\Doctrine\Traits\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Infrastructure\Model\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Domain\User\UserRepository")
  *
  * @UniqueEntity(fields={"email"}, groups={"create"})
  */

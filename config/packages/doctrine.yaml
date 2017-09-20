@@ -10,8 +10,8 @@ doctrine:
             App:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/Infrastructure/Model/Entity'
-                prefix: 'App\Infrastructure\Model\Entity\'
+                dir: '%kernel.project_dir%/src/Domain/Model'
+                prefix: 'App\Domain\Model\'
                 alias: Model
             #Doctrine Extensions Mappings
             #gedmo_translatable:

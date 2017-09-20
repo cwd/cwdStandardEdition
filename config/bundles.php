@@ -21,4 +21,5 @@ return [
     'Cwd\BootgridBundle\CwdBootgridBundle' => ['all' => true],
     'Cwd\FosUserExtensionBundle\CwdFosUserExtensionBundle' => ['all' => true],
     'Cwd\ThemeBundle\CwdThemeBundle' => ['all' => true],
+    'Cwd\GeneratorBundle\CwdGeneratorBundle' => ['dev' => true],
 ];
