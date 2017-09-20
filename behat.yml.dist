@@ -6,12 +6,12 @@ default:
                     container: '@service_container'
                     kernel: '@kernel'
                 - App\Context\UserContext:
-                    userManager: '@App\Infrastructure\Manager\UserManager'
+                    userManager: '@App\Domain\User\UserManager'
                     fosUserManager: '@fos_user.user_manager'
                     encoderFactory: '@security.encoder_factory'
                 - App\Context\AuthContext:
                     tokenStorage: '@security.token_storage'
-                    userService: '@App\Infrastructure\Manager\UserManager'
+                    userService: '@App\Domain\User\UserManager'
 
     extensions:
         Behat\Symfony2Extension:
