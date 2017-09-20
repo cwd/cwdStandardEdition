@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Web\Controller;
 
-use App\Infrastructure\Manager\UserManager;
-use App\Infrastructure\Model\Entity\User;
+use App\Domain\User\UserManager;
+use App\Domain\Model\User;
 use App\Infrastructure\Web\Form\UserType;
 use App\Infrastructure\Web\Grid\UserGrid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

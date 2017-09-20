@@ -1,6 +1,6 @@
 security:
     encoders:
-        App\Infrastructure\Model\Entity\User:
+        App\Domain\Model\User:
             algorithm: bcrypt
             cost: 15
 

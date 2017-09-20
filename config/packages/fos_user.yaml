@@ -1,9 +1,9 @@
 fos_user:
     db_driver: orm
     firewall_name: admin
-    user_class: App\Infrastructure\Model\Entity\User
+    user_class: App\Domain\Model\User
     group:
-        group_class:    App\Infrastructure\Model\Entity\Group
+        group_class:    App\Domain\Model\Group
     from_email:
         address:        app@localhost
         sender_name:    App

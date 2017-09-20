@@ -9,10 +9,11 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Manager;
+namespace App\Domain\User;
 
-use App\Infrastructure\Model\Entity\User as Entity;
-use App\Infrastructure\Model\Repository\UserRepository as EntityRepository;
+use App\Domain\AbstractManager;
+use App\Domain\User\User as Entity;
+use App\Domain\User\UserRepository as EntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 
@@ -46,7 +47,7 @@ class UserManager extends AbstractManager
     {
         return [
             'modelName' => 'Model:User',
-            'notFoundExceptionClass' => 'App\Infrastructure\Manager\Exception\UserNotFoundException',
+            'notFoundExceptionClass' => 'App\Domain\User\Exception\UserNotFoundException',
         ];
     }
 }

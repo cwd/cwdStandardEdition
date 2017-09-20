@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "929d60e1c82ea0595578a9e6a8e83092",
+    "content-hash": "bdd177387dfcb66298b0f542db11c58e",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -101,7 +101,7 @@
                 }
             ],
             "description": "Admin Theme based on the AdminLTE Template for easy integration into symfony",
-            "time": "2017-09-18T01:49:33+00:00"
+            "time": "2017-03-09T16:59:18+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -3333,6 +3333,41 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "cwd/generator-bundle",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.cwd.at/symfony/cwdGeneratorBundle.git",
+                "reference": "4e7bd7f7bb9b10727e51ad07265efae32b7f3e4c"
+            },
+            "require": {
+                "php": ">=5.6.0",
+                "symfony/framework-bundle": "~2.7|~3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Cwd\\GeneratorBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ludwig Ruderstaller",
+                    "email": "lr@cwd.at"
+                }
+            ],
+            "description": "bootstrap classes used by cwd applications",
+            "keywords": [
+                "bundle",
+                "symfony"
+            ],
+            "time": "2017-04-20T07:21:50+00:00"
         },
         {
             "name": "cwd/phpcs",

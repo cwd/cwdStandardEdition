@@ -17,7 +17,7 @@ use Symfony\Component\BrowserKit\Client;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use App\Infrastructure\Manager\UserManager;
+use App\Domain\User\UserManager;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthContext extends RawMinkContext

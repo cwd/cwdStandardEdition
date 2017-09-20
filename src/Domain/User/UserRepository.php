@@ -9,13 +9,13 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Manager\Exception;
+namespace App\Domain\User;
 
-use Cwd\CommonBundle\Exception\AbstractBaseException;
+use Doctrine\ORM\EntityRepository;
 
 /**
- * Class UserNotFoundException.
+ * Class UserRepository.
  */
-class UserNotFoundException extends AbstractBaseException
+class UserRepository extends EntityRepository
 {
 }
