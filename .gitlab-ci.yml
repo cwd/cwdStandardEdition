@@ -22,7 +22,7 @@ variables:
     - composer install --prefer-dist --ansi --no-progress --no-suggest
     - bin/console --env=test doctrine:schema:update --force --no-interaction --no-debug
   script:
-    - bin/php-cs-fixer fix --dry-run --config-file=.php_cs
+    - bin/php-cs-fixer fix --dry-run --config=.php_cs
 #    - bin/phpmetrics src -q --report-csv=build/phpmetrics.csv #--report-cli
 #    - bin/phpcpd -n --ansi --exclude Model src
 #    - bin/phpmd src text phpmd.xml --exclude Entity,Tests
