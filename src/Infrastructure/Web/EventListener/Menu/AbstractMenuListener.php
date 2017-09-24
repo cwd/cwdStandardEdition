@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Web\EventListener\Menu;
 
 use Avanzu\AdminThemeBundle\Event\SidebarMenuEvent;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AbstractMenuListener.
@@ -52,4 +53,11 @@ abstract class AbstractMenuListener
 
         return $items;
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return array<MenuItemModel>
+     */
+    abstract protected function getMenu(Request $request);
 }

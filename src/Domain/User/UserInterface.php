@@ -8,7 +8,12 @@
 
 namespace App\Domain\User;
 
-class UserInterface
-{
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
+interface UserInterface extends  AdvancedUserInterface
+{
+    public function getLastname() : ?string;
+    public function getFirstname() : ?string;
+    public function getCreatedAt() : ?\DateTime;
+    public function getUpdatedAt() : ?\DateTime;
 }
