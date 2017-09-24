@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb255e88a880b30da881bb54dd6bc588",
+    "content-hash": "8111d98b59b32f9968a1faba07eaf3d3",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -208,11 +208,11 @@
         },
         {
             "name": "cwd/bootgrid-bundle",
-            "version": "0.3.2",
+            "version": "0.3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.cwd.at/symfony/cwdBootgridBundle.git",
-                "reference": "a347b4d5a91b29ea8304e5ecf8c7f54d6952f480"
+                "reference": "9c30a08f0330e007934051f20d08f19b506b00b7"
             },
             "require": {
                 "doctrine/orm": "^2.5",
@@ -248,19 +248,19 @@
                 "symfony",
                 "table"
             ],
-            "time": "2017-09-14T09:34:47+00:00"
+            "time": "2017-09-24T09:38:02+00:00"
         },
         {
             "name": "cwd/common-bundle",
-            "version": "0.1.8",
+            "version": "0.2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.cwd.at/symfony/cwdCommonBundle.git",
-                "reference": "735b32e89223f76fd612e9590977c2c015450596"
+                "reference": "f09f8b1ad88ef505b54c3ab656d9281b6aad20f8"
             },
             "require": {
-                "php": ">=5.6.0",
-                "symfony/framework-bundle": "~2.7|~3.0"
+                "php": ">=7.1.0",
+                "symfony/framework-bundle": "~3.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -283,7 +283,7 @@
                 "bundle",
                 "symfony"
             ],
-            "time": "2017-05-21T19:54:36+00:00"
+            "time": "2017-09-24T09:40:37+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -4352,16 +4352,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.21",
+            "version": "5.7.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3b91adfb64264ddec5a2dee9851f354aa66327db"
+                "reference": "10df877596c9906d4110b5b905313829043f2ada"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3b91adfb64264ddec5a2dee9851f354aa66327db",
-                "reference": "3b91adfb64264ddec5a2dee9851f354aa66327db",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/10df877596c9906d4110b5b905313829043f2ada",
+                "reference": "10df877596c9906d4110b5b905313829043f2ada",
                 "shasum": ""
             },
             "require": {
@@ -4430,7 +4430,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-06-21T08:11:54+00:00"
+            "time": "2017-09-24T07:23:38+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5279,7 +5279,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "cwd/common-bundle": 0,
         "cwd/bootgrid-bundle": 0,
         "avanzu/admin-theme-bundle": 20
     },

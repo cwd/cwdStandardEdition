@@ -28,7 +28,7 @@
         "symfony/swiftmailer-bundle": "^3.0.0",
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0",
-        "cwd/common-bundle": "@stable",
+        "cwd/common-bundle": "^0.2",
         "cwd/bootgrid-bundle": "@stable",
         "avanzu/admin-theme-bundle": "dev-master#c0ff9dd38626778e3a7ac757a837677cb21e0e0c",
         "friendsofsymfony/user-bundle": "~2.0",
@@ -46,8 +46,8 @@
         "phpunit/phpunit": "~5.7",
         "sensio/generator-bundle": "^3.0",
         "symfony/dotenv": "^3.3",
-        "symfony/phpunit-bridge": "^3.3",
-        "cwd/phpcs": "dev-master"
+        "symfony/phpunit-bridge": "^3.3"
+	 
     },
     "scripts": {
         "symfony-scripts": [

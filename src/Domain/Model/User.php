@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
+use App\Domain\User\UserInterface;
 use Cwd\CommonBundle\Doctrine\Traits\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as FOSUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @UniqueEntity(fields={"email"}, groups={"create"})
  */
-class User extends FOSUser implements AdvancedUserInterface
+class User extends FOSUser implements UserInterface
 {
     use Timestampable;
 
@@ -75,37 +75,34 @@ class User extends FOSUser implements AdvancedUserInterface
     /**
      * @return mixed
      */
-    public function getFirstname()
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
     /**
-     * @param mixed $firstname
+     * @param string $firstname
      *
      * @return $this
      */
-    public function setFirstname($firstname)
+    public function setFirstname(?string $firstname)
     {
         $this->firstname = $firstname;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastname()
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
     /**
-     * @param mixed $lastname
+     * @param string $lastname
      *
      * @return $this
      */
-    public function setLastname($lastname)
+    public function setLastname(?string $lastname)
     {
         $this->lastname = $lastname;
 
@@ -129,7 +126,7 @@ class User extends FOSUser implements AdvancedUserInterface
      *
      * @return User
      */
-    public function setState($state)
+    public function setState(?string $state)
     {
         $this->state = $state;
 
@@ -141,7 +138,7 @@ class User extends FOSUser implements AdvancedUserInterface
      *
      * @return string
      */
-    public function getState()
+    public function getState(): ?string
     {
         return $this->state;
     }
