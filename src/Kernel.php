@@ -46,6 +46,7 @@ class Kernel extends BaseKernel
         }
     }
 
+    /** @scrutinizer ignore-unused */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         $confDir = dirname(__DIR__).'/config';
