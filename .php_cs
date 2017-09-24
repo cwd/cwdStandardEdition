@@ -1,25 +1,41 @@
 <?php
+
 /*
- * This file is part of Appliation.
+ * This file is part of the Application.
  *
- * (c) 2016 cwd.at GmbH <office@cwd.at>
+ * (c) 2017 cwd.at GmbH <office@cwd.at>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-$finder = Symfony\CS\Finder::create()
+
+declare(strict_types=1);
+
+$finder = PhpCsFixer\Finder::create()
+    ->notName('*.twig')
     ->in([__DIR__.'/src', __DIR__.'/tests'])
 ;
-Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader(<<<EOF
+
+$year = date('Y');
+
+return PhpCsFixer\Config::create()
+    ->setUsingCache(true)
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@Symfony' => true,
+        'declare_strict_types' => true,
+        'header_comment' => [
+            'header' => <<<EOF
 This file is part of Application.
-(c) 2016 cwd.at GmbH <office@cwd.at>
+
+(c) {$year} cwd.at GmbH <office@cwd.at>
+
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 EOF
-);
-return Symfony\CS\Config::create()
-    ->setUsingCache(true)
-    ->addCustomFixers(Cwd\PhpCs\CodingStandard::getCustomFixers())
-    ->fixers(Cwd\PhpCs\CodingStandard::PHP7_FIXERS)
-    ->finder($finder)
+            ,
+            'location' => 'after_open',
+        ],
+    ])
+    ->setFinder($finder)
 ;
