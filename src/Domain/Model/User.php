@@ -75,13 +75,14 @@ class User extends FOSUser implements UserInterface
     /**
      * @return mixed
      */
-    public function getFirstname() : ?string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
     /**
      * @param string $firstname
+     *
      * @return $this
      */
     public function setFirstname(?string $firstname)
@@ -137,7 +138,7 @@ class User extends FOSUser implements UserInterface
      *
      * @return string
      */
-    public function getState() : ?string
+    public function getState(): ?string
     {
         return $this->state;
     }
