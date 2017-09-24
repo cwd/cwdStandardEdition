@@ -9,6 +9,7 @@ This edition uses the new Symfony 4.0 directory structure.
 [![Latest Stable Version](https://poser.pugx.org/cwd/framework-standard-edition/v/stable)](https://packagist.org/packages/cwd/framework-standard-edition)
 [![pipeline status](https://gitlab.cwd.at/symfony/cwd-standard-edition/badges/develop/pipeline.svg)](https://gitlab.cwd.at/symfony/cwd-standard-edition/commits/develop)
 [![Dependency Status](https://gemnasium.com/badges/2e40c03315e7e729443d44813dcf3adf.svg)](https://gemnasium.com/d1c9f9e46c297989259d4665c20ac7a2)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cwd/cwdStandardEdition/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/cwd/cwdStandardEdition/?branch=develop)
 [![License](https://poser.pugx.org/cwd/framework-standard-edition/license)](https://packagist.org/packages/cwd/framework-standard-edition)
 
 How to use it:
