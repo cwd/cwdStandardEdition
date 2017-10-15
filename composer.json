@@ -63,7 +63,7 @@
         "post-update-cmd": [
             "@symfony-scripts"
         ],
-        "post-create-project-cmd": [
+        "post-root-package-install": [
             "cp .env.dist .env"
         ]
     },
