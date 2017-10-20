@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Web\EventListener\User;
 
+use App\Domain\User\UserInterface;
 use Avanzu\AdminThemeBundle\Event\ShowUserEvent;
 use Avanzu\AdminThemeBundle\Model\UserModel;
-use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
