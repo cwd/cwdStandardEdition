@@ -6,4 +6,3 @@ framework:
     translator:
         paths:
             - '%kernel.project_dir%/translations/'
-            - '%kernel.project_dir%/bundles/Cwd/FosUserExtensionBundle/Resources/translations/'
