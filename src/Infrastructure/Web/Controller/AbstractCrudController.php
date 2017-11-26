@@ -57,7 +57,7 @@ abstract class AbstractCrudController extends CwdAbstractCrudController
         ]);
 
         $resolver->setRequired([
-            'entityService',
+            'entityManager',
             'entityFormType',
             'gridService',
             'icon',

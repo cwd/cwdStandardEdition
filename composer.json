@@ -27,9 +27,10 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^3.0.0",
         "symfony/symfony": "3.4.x-dev",
-        "twig/twig": "^1.0||^2.0",
-        "cwd/common-bundle": "^0.3",
-        "cwd/bootgrid-bundle": "@stable",
+        "twig/twig": "^2.0",
+        "cwd/common-bundle": "^0.4",
+        "cwd/fancygrid-bundle": "^1.0.1",
+        "white-october/pagerfanta-bundle": "~1.1",
         "avanzu/admin-theme-bundle": "dev-master#c0ff9dd38626778e3a7ac757a837677cb21e0e0c",
         "friendsofsymfony/user-bundle": "~2.0",
         "stof/doctrine-extensions-bundle": "^1.2"

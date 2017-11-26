@@ -1,0 +1,21 @@
+cwd_fancy_grid:
+  #license: '1234'
+  js_options:
+    pageSizeData: [5, 10, 20, 50]
+    theme: 'bootstrap'
+    height: 'fit'
+    trackOver: true
+    i18n: '%locale%'
+    menu: true
+    selModel: 'row'
+    striped: true
+    columnLines: false
+    searching: true
+    textSelection: true
+    refreshButton: true
+    defaults:
+      resizable: true
+      draggable: true
+      sortable: true
+      menu: true
+    controllers: ['cwdcontrol']

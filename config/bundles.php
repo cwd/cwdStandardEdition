@@ -18,6 +18,6 @@ return [
     'WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle' => ['all' => true],
     'Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle' => ['all' => true],
     'Cwd\CommonBundle\CwdCommonBundle' => ['all' => true],
-    'Cwd\BootgridBundle\CwdBootgridBundle' => ['all' => true],
+    'Cwd\FancyGridBundle\CwdFancyGridBundle' => ['all' => true],
     'Cwd\GeneratorBundle\CwdGeneratorBundle' => ['dev' => true],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Application.
+ * This file is part of Exceet Carrier Text Verwaltung
  *
  * (c) 2017 cwd.at GmbH <office@cwd.at>
  *
@@ -11,50 +11,35 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Model;
+namespace App\Domain\User;
 
-use App\Domain\User\UserInterface;
 use Cwd\CommonBundle\Doctrine\Traits\Timestampable;
-use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as FOSUser;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Domain\User\UserRepository")
- *
- * @UniqueEntity(fields={"email"}, groups={"create"})
+ * Class User.
  */
 class User extends FOSUser implements UserInterface
 {
     use Timestampable;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="guid")
-     * @ORM\GeneratedValue(strategy="UUID")
-     */
     protected $id;
 
     /**
      * @Assert\NotBlank
-     * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $firstname;
 
     /**
      * @Assert\NotBlank
-     * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $lastname;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
     private $state;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\NotBlank(groups={"Create"})
      */
     protected $plainPassword;
 
@@ -117,6 +102,11 @@ class User extends FOSUser implements UserInterface
     public function setEmail($email)
     {
         return parent::setEmail($email);
+    }
+
+    public function getFullname(): string
+    {
+        return sprintf('%s %s', $this->getFirstname(), $this->getLastname());
     }
 
     /**

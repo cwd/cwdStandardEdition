@@ -1,8 +1,11 @@
 security:
     encoders:
-        App\Domain\Model\User:
-            algorithm: bcrypt
-            cost: 15
+        App\Domain\User\User:
+            # php7.2
+            algorithm: 'argon2i'
+            # php7.0|7.1
+            #algorithm: bcrypt
+            #cost: 15
 
     role_hierarchy:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]

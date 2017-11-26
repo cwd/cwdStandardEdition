@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Application.
+ * This file is part of Exceet Carrier Text Verwaltung
  *
  * (c) 2017 cwd.at GmbH <office@cwd.at>
  *
@@ -48,7 +48,7 @@ class UserManager extends AbstractManager
     protected function setServiceOptions()
     {
         return [
-            'modelName' => 'Model:User',
+            'modelName' => User::class,
             'notFoundExceptionClass' => 'App\Domain\User\Exception\UserNotFoundException',
         ];
     }

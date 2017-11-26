@@ -18,7 +18,7 @@ services:
             MYSQL_DATABASE: project
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
     php:
-        image: dockerhub.cwd.at/docker/php/fpm-xdebug:7.1
+        image: dockerhub.cwd.at/docker/php/fpm-xdebug:7.2
         working_dir: /var/www/app
         user: "$USERID"
         volumes_from:

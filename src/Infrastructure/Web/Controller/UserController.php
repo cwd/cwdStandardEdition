@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Application.
+ * This file is part of Exceet Carrier Text Verwaltung
  *
  * (c) 2017 cwd.at GmbH <office@cwd.at>
  *
@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Web\Controller;
 
-use App\Domain\Model\User;
+use App\Domain\User\User;
 use App\Domain\User\UserManager;
 use App\Infrastructure\Web\Form\UserType;
 use App\Infrastructure\Web\Grid\UserGrid;
@@ -44,7 +44,7 @@ class UserController extends AbstractCrudController
     protected function setOptions()
     {
         $options = [
-            'entityService' => UserManager::class,
+            'entityManager' => UserManager::class,
             'entityFormType' => UserType::class,
             'gridService' => UserGrid::class,
             'createRoute' => 'app_infrastructure_web_user_create',
@@ -62,24 +62,21 @@ class UserController extends AbstractCrudController
      * @param Request $request
      *
      * @Route("/list/data")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      * @Security("has_role('ROLE_ADMIN')")
      *
      * @return JsonResponse
      */
     public function ajaxDataAction(Request $request)
     {
-        $grid = $this->getGrid($request->request->all());
-        $data = $grid->getData();
-
-        return new JsonResponse($data);
+        return parent::ajaxDataAction($request);
     }
 
     /**
      * @Route("/list")
      * @Route("/")
      * @Method({"GET"})
-     * @Template("Grid/list.html.twig")
+     * @Template("@CwdFancyGrid/list.html.twig")
      * @Security("has_role('ROLE_ADMIN')")
      *
      * @return array
@@ -93,7 +90,7 @@ class UserController extends AbstractCrudController
      * @Route("/detail/{id}")
      * @Method({"GET"})
      * @Template()
-     * @ParamConverter("crudObject", class="Model:User")
+     * @ParamConverter("crudObject", class="App\Domain\User\User")
      *
      * @param User $crudObject
      * @Security("has_role('ROLE_ADMIN')")
@@ -124,7 +121,7 @@ class UserController extends AbstractCrudController
     /**
      * Edit action.
      *
-     * @ParamConverter("crudObject", class="Model:User")
+     * @ParamConverter("crudObject", class="App\Domain\User\User")
      * @Route("/edit/{id}")
      * @Method({"GET", "POST", "PUT"})
      *
@@ -142,7 +139,7 @@ class UserController extends AbstractCrudController
 
     /**
      * @Route("/delete/{id}")
-     * @ParamConverter("crudObject", class="Model:User")
+     * @ParamConverter("crudObject", class="App\Domain\User\User")
      * @Method({"GET", "DELETE"})
      *
      * @param User    $crudObject
