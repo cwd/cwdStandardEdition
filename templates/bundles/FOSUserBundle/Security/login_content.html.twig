@@ -32,7 +32,7 @@
         </form>
 
         <div class="row">
-            <div class="col-xs-6"><a href="#">{{ "login.lostpassword"|trans({}, 'cwdlogin') }}</a><br></div>
+            <div class="col-xs-6"><a href="{{ path('fos_user_resetting_request') }}">{{ "login.lostpassword"|trans({}, 'cwdlogin') }}</a><br></div>
             <div class="col-xs-6 text-right text-sm">Version: {{ version }}</div>
         </div>
 

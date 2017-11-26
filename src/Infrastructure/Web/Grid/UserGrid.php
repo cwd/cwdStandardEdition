@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Application.
+ * This file is part of Exceet Carrier Text Verwaltung
  *
  * (c) 2017 cwd.at GmbH <office@cwd.at>
  *
@@ -13,12 +13,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Web\Grid;
 
-use Cwd\BootgridBundle\Column\ActionType;
-use Cwd\BootgridBundle\Column\DateType;
-use Cwd\BootgridBundle\Column\NumberType;
-use Cwd\BootgridBundle\Column\TextType;
-use Cwd\BootgridBundle\Grid\AbstractGrid;
-use Cwd\BootgridBundle\Grid\GridBuilderInterface;
+use App\Domain\User\User;
+use Cwd\FancyGridBundle\Column\ActionType;
+use Cwd\FancyGridBundle\Column\DateType;
+use Cwd\FancyGridBundle\Column\NumberType;
+use Cwd\FancyGridBundle\Column\TextType;
+use Cwd\FancyGridBundle\Grid\AbstractGrid;
+use Cwd\FancyGridBundle\Grid\GridBuilderInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,17 +35,16 @@ class UserGrid extends AbstractGrid
      */
     public function buildGrid(GridBuilderInterface $builder, array $options)
     {
-        $builder->add(new NumberType('id', 'u.id', ['label' => 'generic.id', 'identifier' => true, 'visible' => false]))
-                ->add(new TextType('username', 'u.username', ['label' => 'user.username']))
-                ->add(new TextType('firstname', 'u.firstname', ['label' => 'user.firstname']))
-                ->add(new TextType('lastname', 'u.lastname', ['label' => 'user.lastname']))
-                ->add(new TextType('email', 'u.email', ['label' => 'user.email']))
+        $builder->add(new NumberType('id', 'u.id', ['label' => 'generic.id', 'identifier' => true, 'flex' => 1]))
+                ->add(new TextType('username', 'u.username', ['label' => 'user.username', 'flex' => 4]))
+                ->add(new TextType('firstname', 'u.firstname', ['label' => 'user.firstname', 'flex' => 2]))
+                ->add(new TextType('lastname', 'u.lastname', ['label' => 'user.lastname', 'flex' => 3]))
+                ->add(new TextType('email', 'u.email', ['label' => 'user.email', 'flex' => 2]))
                 ->add(new DateType(
                     'createdAt',
                     'u.createdAt',
                     [
                         'label' => 'generic.created',
-                        'format' => 'd.m.Y H:i:s',
                     ]
                 ))
                 ->add(new DateType(
@@ -52,8 +52,6 @@ class UserGrid extends AbstractGrid
                     'u.updatedAt',
                     [
                         'label' => 'generic.updated',
-                        'visible' => false,
-                        'format' => 'd.m.Y H:i:s',
                     ]
                 ))
                 ->add(new ActionType(
@@ -61,6 +59,7 @@ class UserGrid extends AbstractGrid
                     'u.id',
                     [
                         'label' => '',
+                        'minWidth' => 100,
                         'actions' => [
                             [
                                 'route' => 'app_infrastructure_web_user_edit',
@@ -102,7 +101,7 @@ class UserGrid extends AbstractGrid
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = $objectManager
-            ->getRepository('Model:User')
+            ->getRepository(User::class)
             ->createQueryBuilder('u')
             ->addOrderBy('u.lastname', 'ASC');
 

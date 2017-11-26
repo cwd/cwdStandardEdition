@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
-use Cwd\CommonBundle\Service\AbstractBaseService as CwdAbstractBaseManager;
+use Cwd\CommonBundle\Manager\AbstractManager as cwdAbstractManager;
 
 /**
  * Base Service class to ease creation of model-specific service classes.
  * If this code proves useful, we should consider moving it into the Generic service.
  */
-abstract class AbstractManager extends CwdAbstractBaseManager
+abstract class AbstractManager extends cwdAbstractManager
 {
 }

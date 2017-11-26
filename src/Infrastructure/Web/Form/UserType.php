@@ -61,7 +61,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'App\Domain\Model\User',
+                'data_class' => 'App\Domain\User\User',
             ]
         );
     }
