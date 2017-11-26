@@ -26,8 +26,7 @@ services:
         environment:
             PHP_XDEBUG_ENABLED: 1
             PHP_IDE_CONFIG: serverName=docker.local
-            XDEBUG_CONFIG: remote_host=$XDEBUG_CALLBACK_HOST remote_port=$XDEBUG_CALLBACK_PORT remote_connect_back=0
-
+            XDEBUG_CONFIG: remote_host=$XDEBUG_CALLBACK_HOST remote_port=9000 remote_connect_back=0
 
     apache:
         image: httpd:2.4

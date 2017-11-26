@@ -28,7 +28,7 @@
         "symfony/swiftmailer-bundle": "^3.0.0",
         "symfony/symfony": "3.4.x-dev",
         "twig/twig": "^1.0||^2.0",
-        "cwd/common-bundle": "^0.2",
+        "cwd/common-bundle": "^0.3",
         "cwd/bootgrid-bundle": "@stable",
         "avanzu/admin-theme-bundle": "dev-master#c0ff9dd38626778e3a7ac757a837677cb21e0e0c",
         "friendsofsymfony/user-bundle": "~2.0",
@@ -40,9 +40,8 @@
         "behat/mink-extension": "^2.2",
         "behat/mink-goutte-driver": "^1.2",
         "behat/symfony2-extension": "~2.1",
-        "cwd/generator-bundle": "^0.2",
+        "cwd/generator-bundle": "^0.3",
         "friendsofphp/php-cs-fixer": "^2.6",
-        "doctrine/data-fixtures": "^1.2",
         "phpunit/phpunit": "~5.7",
         "sensio/generator-bundle": "^3.0",
         "symfony/dotenv": "^3.3",
@@ -68,6 +67,7 @@
     },
     "config": {
         "preferred-install": {
+            "cwd/*": "source",
             "*": "dist"
         },
         "sort-packages": true
