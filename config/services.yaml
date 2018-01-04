@@ -36,9 +36,4 @@ services:
             - "@security.token_storage"
         tags:
             - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
-
-    App\Infrastructure\Web\EventListener\User\ShowUserListener:
-        arguments:
-            - "@security.token_storage"
-        tags:
             - { name: kernel.event_listener, event: theme.sidebar_user, method: onShowuser }

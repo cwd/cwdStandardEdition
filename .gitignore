@@ -19,3 +19,10 @@
 !var/SymfonyRequirements.php
 /vendor/
 /public/bundles/
+
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
