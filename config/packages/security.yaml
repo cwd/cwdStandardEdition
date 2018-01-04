@@ -40,6 +40,7 @@ security:
             security: true
             anonymous: true
             switch_user: true
+            logout_on_user_change: true
 
     access_control:
         # frontend login

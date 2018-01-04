@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
-use Cwd\CommonBundle\Doctrine\Traits\Timestampable;
+use App\Infrastructure\Doctrine\TimestampableTrait;
 use FOS\UserBundle\Model\User as FOSUser;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends FOSUser implements UserInterface
 {
-    use Timestampable;
+    use TimestampableTrait;
 
     protected $id;
 
